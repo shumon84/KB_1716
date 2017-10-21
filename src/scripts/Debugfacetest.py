@@ -50,21 +50,18 @@ try:
 
     # 'data' contains the JSON data. The following formats the JSON data for display.
     parsed = json.loads(data)
-    if len(parsed) == 2:
-        for i in range(len(parsed)):
-        	print('-------------------------')
-                height = parsed[i]['faceRectangle']['height']
-                left = parsed[i]['faceRectangle']['left']
-                top = parsed[i]['faceRectangle']['top']
-                width = parsed[i]['faceRectangle']['width']
-            	print('height{0}:{1}'.format(i,height))
-            	print('left{0}:{1}'.format(i,left))
-            	print('top{0}:{1}'.format(i,top))
-            	print('width{0}:{1}'.format(i,width))
-                trimming.trimming(img,top,left,height,width,args[1],i)
-            	print('-------------------------')
-    else:
-        print('ERROR')
+    for i in range(len(parsed)):
+        print('-------------------------')
+        height = parsed[i]['faceRectangle']['height']
+        left = parsed[i]['faceRectangle']['left']
+        top = parsed[i]['faceRectangle']['top']
+        width = parsed[i]['faceRectangle']['width']
+    	print('height{0}:{1}'.format(i,height))
+    	print('left{0}:{1}'.format(i,left))
+    	print('top{0}:{1}'.format(i,top))
+    	print('width{0}:{1}'.format(i,width))
+        trimming.trimming(img,top,left,height,width,args[1],i)
+    	print('-------------------------')
     conn.close()
 
 except Exception as e:
