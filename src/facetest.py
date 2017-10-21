@@ -39,7 +39,7 @@ params = urllib.urlencode({
 #body = "{'url':'http:q//www.aflo.com/creative/people/img/mainImg.jpg'}"
 body = open(args[1],'rb')
 
-img = cv2.imread( "../img/mainImg.jpg" )
+img = cv2.imread(args[1] )
 
 try:
     # Execute the REST API call and get the response.
