@@ -14,9 +14,8 @@ serial_number = 0
 # @param[in] height     トリミングしたい長方形の高さ
 #
 # @return    image_name トリミング後の画像のファイル名
-def trimming(image, top, left, width, height):
-    image_name = str(serial_number)+".png"
+def trimming(image, top, left, width, height,number):
+    image_name = str(number)+".png"
     trim = image[top:top+height, left:left+width]
-    cv2.imwrite(image_name,trim)
-    serial_number += 1
+    cv2.imwrite("../img/" + str(image_name),trim)
     return image_name
