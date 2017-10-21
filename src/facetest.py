@@ -60,7 +60,7 @@ try:
     	print('height{0}:{1}'.format(i,parsed[i]['faceRectangle']['left']))
     	print('height{0}:{1}'.format(i,parsed[i]['faceRectangle']['top']))
     	print('height{0}:{1}'.format(i,parsed[i]['faceRectangle']['width']))
-        trimming.trimming(img,top,left,height,width,i)
+        trimming.trimming(img,top,left,height,width,args[1],i)
     	print('-------------------------')
     #print ("Response:")
     #print (json.dumps(parsed, sort_keys=True, indent=2))
