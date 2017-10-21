@@ -1,5 +1,5 @@
 import httplib, urllib, base64, json
-import trimming
+import choice
 import sys
 import cv2
 
@@ -51,21 +51,39 @@ try:
     # 'data' contains the JSON data. The following formats the JSON data for display.
     parsed = json.loads(data)
     if len(parsed) == 2:
-        for i in range(len(parsed)):
-        	print('-------------------------')
-                height = parsed[i]['faceRectangle']['height']
-                left = parsed[i]['faceRectangle']['left']
-                top = parsed[i]['faceRectangle']['top']
-                width = parsed[i]['faceRectangle']['width']
-            	print('height{0}:{1}'.format(i,height))
-            	print('left{0}:{1}'.format(i,left))
-            	print('top{0}:{1}'.format(i,top))
-            	print('width{0}:{1}'.format(i,width))
-                trimming.trimming(img,top,left,height,width,args[1],i)
-            	print('-------------------------')
+        A = {'x':parsed[0]['faceRectangle']['left']}
+        A['anger'] = parsed[0]['emotion']['anger']
+        A['contempt'] = parsed[0]['emotion']['comtempt']
+        A['disgust'] = parsed[0]['emotion']['disgust']
+        A['fear'] = parsed[0]['emotion']['fear']
+        A['happiness'] = parsed[0]['emotion']['happiness']
+        A['neutral'] = parsed[0]['emotion']['neutral']
+        A['sadness'] = parsed[0]['emotion']['sadness']
+        A['surprise'] = parsed[0]['emotion']['surprise']
+        A['exposure'] = parsed[0]['exposure']['value']
+
+        B = {'x':parsed[1]['faceRectangle']['left']}
+        B['anger'] = parsed[1]['emotion']['anger']
+        B['contempt'] = parsed[1]['emotion']['comtempt']
+        B['disgust'] = parsed[1]['emotion']['disgust']
+        B['fear'] = parsed[1]['emotion']['fear']
+        B['happiness'] = parsed[1]['emotion']['happiness']
+        B['neutral'] = parsed[1]['emotion']['neutral']
+        B['sadness'] = parsed[1]['emotion']['sadness']
+        B['surprise'] = parsed[1]['emotion']['surprise']
+        B['exposure'] = parsed[1]['exposure']['value']
+
+        ret = choice.choice(A, B)
     else:
         print('ERROR')
+    if len(parsed) < 2:
+            ret = -2
+        else:
+            ret = -1
+    
     conn.close()
+
+    return ret
 
 except Exception as e:
     print("[Errno {0}] {1}".format(e.errno, e.strerror))
