@@ -1,6 +1,9 @@
 import httplib, urllib, base64, json
 import trimming
+import sys
 import cv2
+
+args = sys.argv
 
 ###############################################
 #### Update or verify the following values. ###
@@ -33,13 +36,10 @@ params = urllib.urlencode({
 })
 
 # The URL of a JPEG image to analyze.
-#body = "{'url':'http://www.aflo.com/creative/people/img/mainImg.jpg'}"
-body = open("../img/mainImg.jpg",'rb')
-print(type(body))
+#body = "{'url':'http:q//www.aflo.com/creative/people/img/mainImg.jpg'}"
+body = open(args[1],'rb')
+
 img = cv2.imread( "../img/mainImg.jpg" )
-print(type(img))
-#cv2.imshow("color",img)
-#cv2.waitKey(0)
 
 try:
     # Execute the REST API call and get the response.
