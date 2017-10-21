@@ -22,5 +22,8 @@ def trimming(image, top, left, width, height, file_name, serial_number):
         left += (width - height) /2
         
     trim = image[top:top+height, left:left+width]
+    size = (256, 256)
+    trim = cv2.resize(trim, size)
+    
     cv2.imwrite(image_name,trim)
     return image_name
