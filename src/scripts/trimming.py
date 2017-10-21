@@ -1,5 +1,6 @@
 #coding:utf-8
 import cv2
+import drunkjudge
 
 # @brief 画像を長方形にトリミングする
 #
@@ -26,4 +27,13 @@ def trimming(image, top, left, width, height, file_name, serial_number):
     trim = cv2.resize(trim, size)
     
     cv2.imwrite(image_name,trim)
+    #Judge
+    flag = drunkjudge.drunkjudge(image_name)
+    if flag < 0 :
+        print('Danger')
+    elif flag == 0 :
+        print("Risk")
+    else :
+        print('OK')
+
     return image_name

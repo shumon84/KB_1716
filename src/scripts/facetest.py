@@ -60,7 +60,7 @@ try:
             	print('height{0}:{1}'.format(i,height))
             	print('left{0}:{1}'.format(i,left))
             	print('top{0}:{1}'.format(i,top))
-            	print('width{0}:{1}'.format(i,width))
+            	print('wi{0}:{1}'.format(i,width))
                 trimming.trimming(img,top,left,height,width,args[1],i)
             	print('-------------------------')
     else:
