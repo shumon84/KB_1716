@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>COCKTAIL</title>
+  <link href='https://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="stylesheet.css">
+  <script type="text/javascript" src="jquery-1.9.1.js"></script>
+  <script type="text/javascript" src="jquery.uploadThumbs.js"></script>
+  <script>
+  $(function() {
+    // jQuery Upload Thumbs 
+    $('form input:file').uploadThumbs({
+        position  : '#preview',    // any: arbitrarily jquery selector
+        alternate : '.alt'         // selecter for alternate view input file names
+    });
+  });
+</script>
+</head>
+<body>
+<header>
+    <h1>COCKTAIL</h1>
+</header>
+   <section class="image-content">
+       <p id="preview"></p>
+  </section>
+  <section class="button-content">
+      <form action="/" method="post" enctype="multipart/form-data">
+        <div class="upload">
+            <label>
+                <input type="file" name="images[]" multiple="multiple" accept="image/*" />
+                <img src="img/button1.png" class="button" alt="" />
+                <input type="image" src="img/button2.png" class="button"  value="送信する">
+            </label>
+        </div>
+      </form>
+  </section>
+   <footer>&copy; FACESAKE All Rights Reserved at JPHacks2017 in Kobe</footer>
+</body>
+</html>
