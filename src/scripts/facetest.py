@@ -44,7 +44,7 @@ body = open(args[1], 'rb')
 
 img = cv2.imread(args[1])
         
-try:
+if True:
     # Execute the REST API call and get the response.
     conn = httplib.HTTPSConnection('westcentralus.api.cognitive.microsoft.com')
     conn.request("POST", "/face/v1.0/detect?%s" % params, body, headers)
@@ -100,6 +100,6 @@ try:
             
     conn.close()
                     
-except Exception as e:
-    print("[Errno {0}] {1}".format(e.errno, e.strerror))
+#except Exception as e:
+    #print("[Errno {0}] {1}".format(e.errno, e.strerror))
 ####################################

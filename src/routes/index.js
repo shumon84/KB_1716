@@ -28,7 +28,7 @@ router.get('/', function(req, res, next) {
   res.sendfile('./views/index.html');
 });
 
-router.post('/', upload.single('picture'), function(req, res) {
+router.post('/', upload.single('upload'), function(req, res) {
   console.log(req.file);
   var COMMAND = `python ./scripts/facetest.py ./uploads/${req.file.filename}`;
 
