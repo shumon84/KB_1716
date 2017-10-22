@@ -36,8 +36,8 @@ header h1{
 
 /* image-content */
 .image-content {
-  background-color: #999933;
-    position: absolute;
+  background-color: #993;
+  position: absolute;
   top: 40%;
   left: 50%;
   transform: translateY(-50%) translateX(-50%);
@@ -48,8 +48,26 @@ header h1{
 .image-content h2 {
 }
 
-.image-content box{
-  }
+.image-content .box{
+}
+
+
+.image-content-result{
+    text-align: center;
+    background-color: #d9d998;
+
+}
+
+.image-content-result .display-image{
+    height: 25vh;
+    max-width: 80vw;
+    max-height: 25vh;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    
+}
 
 .button-content{
     height: 18vh;
@@ -62,17 +80,72 @@ text-align: center;
     
 }
 
+#first-person{
+    margin-top: 1vh;
+    color: #d9d998;
+    background-color: #000062;
+}
+
+#second-person{
+    margin-top: 1vh;
+    color: #771;
+    background-color: #d9d998;
+}
+
+.person{
+    height: 30vh;
+
+}
+
+.person .intro-text{
+    font-size: 30px;
+    padding-left: 4vw;
+    padding-bottom: 2vh;
+}
+.person .photo{
+    text-align: center;
+    margin:0 auto;
+}
+
+.person .name{
+    text-align: center;
+    font-size: 5vw;
+    
+}
+
+.person .detail-text{
+    text-align: center;
+    font-size: 3vw;
+    line-height: 1.8em;
+}
+
+#detail-text {
+    text-align: center;
+    color: #ffffff;
+    font-size: 30px;
+    background-color: rgba(0,0,0,0.3);
+    border: medium solid #ffffff;
+    display: inline-block;
+    padding: 5px 30px 5px;
+}
+
+#detail-text:hover{
+    background-color: #001FB4;
+    border: medium solid #ffffff;
+    color:#fff;
+    transition:0.3s;
+}
+
 
 
 .button {
   text-align: center;
-  width:300px;
-  height:150px;
+  width:220px;
   margin-top: 2vh;
-  margin-left: 2vw;
-  margin-right: 2vw;
-  max-height: 200px;
-  max-width: 300px;
+  margin-left: 6vw;
+  margin-right:6vw;
+  max-height: 220px;
+  max-width: 20vw;
 }
 
 
@@ -106,7 +179,6 @@ form .upload label {
 form .upload label input[type="file"] {
     cursor:pointer;
     opacity:0.01;
-    
     }
 
 form .upload .alt  {

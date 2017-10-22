@@ -1,0 +1,37 @@
+doctype html
+html(lang='ja')
+  head
+    meta(charset='UTF-8')
+    title Emotional Cocktail
+    link(href='https://fonts.googleapis.com/css?family=Dancing+Script', rel='stylesheet', type='text/css')
+    link(rel='stylesheet', href='../stylesheet2.css')
+    script(type='text/javascript', src='../jquery-1.9.1.js')
+    script(type='text/javascript', src='../jquery.uploadThumbs.js')
+    script.
+      $(function() {
+      // jQuery Upload Thumbs
+      $('form input:file').uploadThumbs({
+      position  : '#preview',    // any: arbitrarily jquery selector
+      alternate : '.alt'         // selecter for alternate view input file names
+      });
+      });
+  body
+    header
+      h1 Emotional Cocktail
+    section.image-content-result
+      img.display-image(src='../img/test.png')
+    section#first-person.person
+      .intro-text 左側にいるあなたにオススメなのは…
+      .photo
+        img(src='../img/wine.png')
+      .name ワイン
+      .detail-text あああああああああいいいいいいいいいいううううううううううええええええええええオオおおおおおおおお
+    section#second-person.person
+      .intro-text 右側にいるあなたにオススメなのは…
+      .photo
+        img(src='../img/cocktail.png')
+      .name オーロラ
+      .detail-text
+        | dsajsadhjfkl;ashjbfkl;pasjkbhfkl;asdkjbhfklo;asldo;f　あshfっdfふいじゃsk；dfはsjkl；klf;sabjfklsfk jls
+    section#button-retry Retry
+    footer © FACESAKE All Rights Reserved at JPHacks2017 in Kobe
