@@ -24,7 +24,8 @@ var upload = multer({ storage: multerStorage });
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  //res.render('index', { title: 'Express' });
+  res.sendfile('./views/index.html');
 });
 
 router.post('/', upload.single('picture'), function(req, res) {
