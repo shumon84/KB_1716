@@ -11,26 +11,21 @@ import cv2
 import sys
 
 def drunkjudge(file_name):
-
-	# 画像の読み込み
+        # 画像の読み込み
 	img_color = cv2.imread(file_name)
 
-	# RGB値をそれぞれ抽出
+        # RGB値をそれぞれ抽出
 	imgR = img_color[:,:,2]
 	imgG = img_color[:,:,1]
 	imgB = img_color[:,:,0]
-	print('-----------------------')
-
+	
 	average_color_per_row = np.average(img_color,axis=0)
 	average_color = np.average(average_color_per_row, axis=0)
 	average_color = np.uint8(average_color)
-	print(average_color)
+	
 	average_sum = int(average_color[1])+int(average_color[0])+int(average_color[2])
 	average_judge = (int(average_color[1])+int(average_color[0])) / float(average_color[2])
-	print(average_judge)
-	print(average_sum)
-	if(int(average_color[1])+int(average_color[0])+int(average_color[2]) != 300):
-		print(300 / float(average_sum) * average_color[2])
+	
 	#average_color_img = np.array([[average_color]*500]*500, np.uint8)
 
 	#cv2.imshow('average',average_color_img)
