@@ -13,7 +13,7 @@ import cv2
 #
 # @return    image_name トリミング後の画像のファイル名
 def trimming(image, top, left, width, height, file_name, serial_number):
-    image_name = "../../img/"+file_name+str(serial_number)+".png"
+    image_name = "~/dev/KB_1716/img/"+file_name+str(serial_number)+".png"
 
     # 矩形を正方形に変換
     if(height > width):

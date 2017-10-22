@@ -58,9 +58,10 @@ def recommend(emt):
     max_emt = max_emotion(emt)
     
     # 感情に合わせたカクテルを選ぶ
-    if emt['drunk'] < 0:
-        sake = u'water'
-    elif max_emt < 0:
+    #if emt['drunk'] < 0:
+    #    sake = u'water'
+    #elif max_emt < 0:
+    if max_emt < 0:
         sake = u'izakaya'
     elif max_emt == 0:
         sake = u'red'

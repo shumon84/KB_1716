@@ -5,7 +5,7 @@ var fs = require('fs');
 var execSync = require('child_process').execSync;
 var mysql = require('mysql');
 var connection = mysql.createConnection({
-  host  : '',
+  host  : 'cocktail.cm9ynyjtyai1.us-east-2.rds.amazonaws.com',
   user  : 'yorechi',
   password  : 'hogehoge123'
 });
@@ -32,9 +32,9 @@ router.post('/', upload.single('upload'), function(req, res) {
   console.log(req.file);
   var COMMAND = `python ./scripts/facetest.py ./uploads/${req.file.filename}`;
 
-  var result = execSync(COMMAND).toString();
+  var result = execSync(COMMAND).toString().split(' ');
 
-  if(result[0] === 'ERROR'){
+  if(result[0] === '-1'){
     console.log(result);
     res.render('error', {error: result[1]}); //人数によって変動
   }else{
@@ -46,11 +46,13 @@ router.post('/', upload.single('upload'), function(req, res) {
       }
       console.log('connected as id ' + connection.threadId);
     });
-    connection.query('SELECT * FROM `cocktailTB` WHERE `color` = result[0]', function(err,res,fields){
-      var left = res[0].name;
+    connection.query('SELECT * FROM sakeDB.cocktailTB WHERE color = \"' + result[0] + `\"`, function(err,res,fields){
+      var left = res[0]["name"];
     });
-    connection.query('SELECT * FROM `cocktailTB` WHERE `color` = result[1]', function(err,res,fields){
-      var right = res[0].name;
+    connection.query('SELECT * FROM sakeDB.cocktailTB WHERE color = \"' + result[1] + `\"`, function(err,res,fields){
+	console.log(result[1]);
+	console.log(res[0]);
+      var right = res[0]["name"];
     });
     res.render('result', {
       title: 'result',
