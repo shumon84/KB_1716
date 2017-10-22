@@ -1,10 +1,13 @@
+# coding:utf-8
 import httplib, urllib, base64, json
 import trimming
+import choice
+import drunkjudge
 import sys
 import cv2
 
 args = sys.argv
-
+    
 ###############################################
 #### Update or verify the following values. ###
 ###############################################
@@ -37,36 +40,67 @@ params = urllib.urlencode({
 
 # The URL of a JPEG image to analyze.
 #body = "{'url':'http:q//www.aflo.com/creative/people/img/mainImg.jpg'}"
-body = open(args[1],'rb')
+body = open(args[1], 'rb')
 
-img = cv2.imread(args[1] )
-
+img = cv2.imread(args[1])
+        
 try:
     # Execute the REST API call and get the response.
     conn = httplib.HTTPSConnection('westcentralus.api.cognitive.microsoft.com')
     conn.request("POST", "/face/v1.0/detect?%s" % params, body, headers)
     response = conn.getresponse()
     data = response.read()
-
+        
     # 'data' contains the JSON data. The following formats the JSON data for display.
     parsed = json.loads(data)
-    if len(parsed) == 2:
-        for i in range(len(parsed)):
-        	print('-------------------------')
-                height = parsed[i]['faceRectangle']['height']
-                left = parsed[i]['faceRectangle']['left']
-                top = parsed[i]['faceRectangle']['top']
-                width = parsed[i]['faceRectangle']['width']
-            	print('height{0}:{1}'.format(i,height))
-            	print('left{0}:{1}'.format(i,left))
-            	print('top{0}:{1}'.format(i,top))
-            	print('wi{0}:{1}'.format(i,width))
-                trimming.trimming(img,top,left,height,width,args[1],i)
-            	print('-------------------------')
-    else:
-        print('ERROR')
-    conn.close()
 
+    for i in range(2):
+        height = parsed[i]['faceRectangle']['height']
+        left = parsed[i]['faceRectangle']['left']
+        top = parsed[i]['faceRectangle']['top']
+        width = parsed[i]['faceRectangle']['width']
+        trimming.trimming(img,top,left,height,width,args[1],i)
+
+    file_name = "../../img/" + args[1] 
+    if len(parsed) == 2:
+        A = {'x':parsed[0][u'faceRectangle'][u'left']}
+        A[u'drunk'] = drunkjudge.drunkjudge(file_name + "0.png")
+        A[u'anger'] = parsed[0][u'faceAttributes'][u'emotion'][u'anger']
+        A[u'contempt'] = parsed[0][u'faceAttributes'][u'emotion'][u'contempt']
+        A[u'disgust'] = parsed[0][u'faceAttributes'][u'emotion'][u'disgust']
+        A[u'fear'] = parsed[0][u'faceAttributes'][u'emotion'][u'fear']
+        A[u'happiness'] = parsed[0][u'faceAttributes'][u'emotion'][u'happiness']
+        A[u'neutral'] = parsed[0][u'faceAttributes'][u'emotion'][u'neutral']
+        A[u'sadness'] = parsed[0][u'faceAttributes'][u'emotion'][u'sadness']
+        A[u'surprise'] = parsed[0][u'faceAttributes'][u'emotion'][u'surprise']
+        A[u'exposure'] = parsed[0][u'faceAttributes'][u'exposure'][u'value']
+                
+        B = {'x':parsed[1][u'faceRectangle'][u'left']}
+        B[u'drunk'] = drunkjudge.drunkjudge(file_name + "1.png")
+        B[u'contempt'] = parsed[1][u'faceAttributes'][u'emotion'][u'contempt']
+        B[u'disgust'] = parsed[1][u'faceAttributes'][u'emotion'][u'disgust']
+        B[u'fear'] = parsed[1][u'faceAttributes'][u'emotion'][u'fear']
+        B[u'happiness'] = parsed[1][u'faceAttributes'][u'emotion'][u'happiness']
+        B[u'neutral'] = parsed[1][u'faceAttributes'][u'emotion'][u'neutral']
+        B[u'sadness'] = parsed[1][u'faceAttributes'][u'emotion'][u'sadness']
+        B[u'surprise'] = parsed[1][u'faceAttributes'][u'emotion'][u'surprise']
+        B[u'exposure'] = parsed[1][u'faceAttributes'][u'exposure'][u'value']
+
+        ret = choice.choice(A, B)
+        
+        print str(ret).decode("string-escape")
+        
+    else:
+        print 11
+        if len(parsed) < 2:
+            print "-1 ツーショットを撮ってください"
+        else:
+            print "-1 人数が多すぎます"
+            
+    conn.close()
+        
+    print ret
+            
 except Exception as e:
     print("[Errno {0}] {1}".format(e.errno, e.strerror))
 ####################################
