@@ -7,7 +7,7 @@ var mysql = require('mysql');
 var connection = mysql.createConnection({
   host  : '',
   user  : 'yorechi',
-  password  : 'hogehoge123';
+  password  : 'hogehoge123'
 });
 
 
@@ -29,7 +29,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/', upload.single('picture'), function(req, res) {
   console.log(req.file);
-  var COMMAND = `python ./scripts/hoge.py ./uploads/${req.file.filename}`;
+  var COMMAND = `python ./scripts/facetest.py ./uploads/${req.file.filename}`;
 
   var result = execSync(COMMAND).toString();
 
