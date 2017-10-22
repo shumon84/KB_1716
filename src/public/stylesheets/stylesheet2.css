@@ -106,6 +106,7 @@ form .upload label {
 form .upload label input[type="file"] {
     cursor:pointer;
     opacity:0.01;
+    
     }
 
 form .upload .alt  {
