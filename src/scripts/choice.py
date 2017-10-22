@@ -17,7 +17,7 @@ def choice(A, B):
 # @brief 最も数値の高い感情を求める
 #
 # それぞれの感情の番号
-#  * happiness ->  0
+#  * anger     ->  0
 #  * neutral   ->  1
 #  * sadness   ->  2
 #  * surprise  ->  3
@@ -35,7 +35,7 @@ def max_emotion(emt):
             continue
         if value > max_val:
             max_val = value
-            if key == 'happiness':
+            if key == 'anger':
                 max_emt = 0
             elif key == 'neutral':
                 max_emt = 1
