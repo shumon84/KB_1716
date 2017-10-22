@@ -88,19 +88,18 @@ try:
 
         ret = choice.choice(A, B)
         
-        print str(ret).decode("string-escape")
-        
+        sys.stdout.write(ret[0])
+        sys.stdout.write(' ')
+        sys.stdout.write(ret[1])
+
     else:
-        print 11
         if len(parsed) < 2:
-            print "-1 ツーショットを撮ってください"
+            sys.stdout.write("-1 ツーショットを撮ってください")
         else:
-            print "-1 人数が多すぎます"
+            sys.stdout.write("-1 人数が多すぎます")
             
     conn.close()
-        
-    print ret
-            
+                    
 except Exception as e:
     print("[Errno {0}] {1}".format(e.errno, e.strerror))
 ####################################
